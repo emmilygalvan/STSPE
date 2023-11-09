@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 import Styles from './NavBarMenu.module.css'
-import logo from '../../assets/logo.svg'
+import logo from '../../assets/logo.png'
 import empleados from '../../assets/empleados.svg'
 import usuario from '../../assets/usuario.svg'
 import delegado from '../../assets/delegado.svg'

@@ -5,11 +5,27 @@ import drop from '../../assets/dropdown.svg'
 import { estados } from './estados';
 import municipiosPorEstado from './municipios';
 import back from '../../assets/back.svg'
+import axios from 'axios';
 
 export const InfoCard = () => {
 
   const [selectedState, setSelectedState] = useState('');
   const [selectedMunicipality, setSelectedMunicipality] = useState('');
+
+  const [formState, setFormstate] = useState({
+    nombre: '',
+    apellidoP: '',
+    apellidoM: '',
+    fechaNacimiento: '',
+    lugarNacimiento: '',
+    genero: '',
+    nacionalidad: '',
+    curp: '',
+    rfc: '',
+    nss: '',
+    escolaridad: '',
+    estadoCivil: '',
+  })
 
   const handleStateChange = (event) => {
     const newState = event.target.value;
@@ -25,6 +41,13 @@ export const InfoCard = () => {
     setSelectedDependency(newDependency);
     setSelectedPlantel('');
   };
+
+  const handleSubmit = async ( e ) => {
+    e.preventDefault()
+    console.log(formState);
+    const resp = await axios.post('http://172.20.10.3:8081/api/employees', formState);
+    console.log(resp.data);
+  }
   
   const plantelesPorDependencia = {
     COBAQ: ["DIRECCION GENERAL", "EMSAD 12", "EMSAD11", "EMSAD13", "EMSAD14", "EMSAD15", "EMSAD18", "EMSAD19", "EMSAD20", "EMSAD21", "EMSAD22", "EMSAD23", "EMSAD24", "EMSAD25", "EMSAD26", "EMSAD27", "EMSAD28", "EMSAD3", "EMSAD30", "EMSAD31", "EMSAD32", "EMSAD4", "EMSAD6", "EMSAD7", "EMSAD8", "EMSAD9", "PLANTEL 1", "PLANTEL 2", "PLANTEL 3", "PLANTEL 4", "PLANTEL 5", "PLANTEL 6", "PLANTEL 7", "PLANTEL 8", "PLANTEL 9", "PLANTEL 10", "PLANTEL 11", "PLANTEL 12", "PLANTEL 13", "PLANTEL 14", "PLANTEL 15", "PLANTEL 16", "PLANTEL 17", "PLANTEL 18", "PLANTEL 19", "PLANTEL 20", "PLANTEL 21", "PLANTEL 22", "PLANTEL 23", "PLANTEL 24", "PLANTEL 25", "PLANTEL 26", "PLANTEL 27", "PLANTEL 28", "PLANTEL 29", "PLANTEL 30", "PLANTEL 31", "PLANTEL 32", "PLANTEL 33", "PLANTEL 34"],
@@ -32,7 +55,7 @@ export const InfoCard = () => {
   };
 
   return (
-    <form className={Styles.datosEmpleado}>
+    <form className={Styles.datosEmpleado} onSubmit={handleSubmit}>
       <div className={Styles.screenName}>
         <img src={back} alt="back" className={Styles.back}/>
         <h1>Registro Empleado</h1>
@@ -46,7 +69,12 @@ export const InfoCard = () => {
           
           <label>
             Nombre <br/>
-            <input type="text" name="nombre"/>
+            <input type="text" name="nombre" onChange={( e ) => {
+              setFormstate({
+                ...formState,
+                nombre: e.target.value
+              })
+            } }/>
           </label>
 
           <label>
@@ -54,34 +82,62 @@ export const InfoCard = () => {
             <input 
               type="date" 
               name="fechaNacimiento"
+              onChange={( e ) => {
+                setFormstate({
+                  ...formState,
+                  fechaNacimiento: e.target.value
+                })
+              }}
             />
           </label>
 
           <text>Nacionalidad</text>
           <label className={Styles.checks}>
-            <input type='radio' name="nacionalidad" value="mexicana"/> 
+            <input type='radio' name="nacionalidad" value="mexicana" onChange={( e ) => {
+              setFormstate({
+                ...formState,
+                nacionalidad: e.target.value})}} /> 
             <p>Mexicana</p>
-            <input type='radio' name="nacionalidad" value="extranjera"/>
+            <input type='radio' name="nacionalidad" value="extranjera" onChange={( e ) => {
+              setFormstate({
+                ...formState,
+                nacionalidad: e.target.value})}} />
             <p>Extranjera</p>
           </label>
 
           <label>
             NSS <br/>
-            <input type="text" name="nss"/>
+            <input type="text" name="nss" onChange={( e ) => {
+              setFormstate({
+                ...formState,
+                nss: e.target.value
+              })
+            } } />
           </label>
-
         </div>
 
         <div className={Styles.columna}>
-
+          
           <label>
             Apellido Paterno<br/>
-            <input type="text" name="apellidoP"/>
+            <input type="text" name="apellidoP" onChange={( e ) => {
+              setFormstate({
+                ...formState,
+                apellidoP: e.target.value
+              })
+            }}/>
           </label>
           
           <label>
             Lugar de Nacimiento<br/>
-            <select name="lugarNacimiento">
+            <select name="lugarNacimiento"
+            onChange={( e ) => {
+              setFormstate({
+                ...formState,
+                lugarNacimiento: e.target.value
+              })
+            }}
+            >
               <option disabled selected value="">Selecciona una opción</option>
               {Object.entries(estados).map(([value, label], index) => (
               <option key={index} value={value}>{label}</option>
@@ -91,12 +147,24 @@ export const InfoCard = () => {
 
           <label>
             CURP <br/>
-            <input type="text" name="curp"/>
+            <input type="text" name="curp" onChange={( e ) => {
+              setFormstate({
+                ...formState,
+                curp: e.target.value
+              })
+            }}/>
           </label>
 
           <label>
             Escolaridad<br/>
-            <select name="escolaridad">
+            <select name="escolaridad"
+            onChange={( e ) => {
+              setFormstate({
+                ...formState,
+                escolaridad: e.target.value
+              })
+            } }
+            >
               <option disabled selected value="">Selecciona una opción</option>
               <option value="primaria">Primaria</option>
               <option value="secundaria">Secundaria</option>
@@ -113,27 +181,50 @@ export const InfoCard = () => {
 
         <div className={Styles.columna}>
           
-          <label>
+        <label>
             Apellido Materno<br/>
-              <input type="text" name="apellidoM"/>
+            <input type="text" name="apellidoM" onChange={( e ) => {
+              setFormstate({
+                ...formState,
+                apellidoM: e.target.value
+              })
+            }}/>
           </label>
           
           <text>Genero</text>
           <label className={Styles.checks}>
-            <input type='radio' name="genero" value="masculino"/> 
+            <input type='radio' name="genero" value="masculino" onChange={( e ) => {
+              setFormstate({
+                ...formState,
+                genero: e.target.value})}} />
             <p>Masculino</p>
-            <input type='radio' name="genero" value="femenino"/>
+            <input type='radio' name="genero" value="femenino" onChange={( e ) => {
+              setFormstate({
+                ...formState,
+                genero: e.target.value})}} />
             <p>Femenino</p>
           </label>
 
           <label>
             RFC <br/>
-            <input type="text" name="curp"/>
+            <input type="text" name="rfc" onChange={( e ) => {
+              setFormstate({
+                ...formState,
+                rfc: e.target.value
+              })
+            }}/>
           </label>
 
           <label>
             Estado Civil<br/>
-            <select name="estadodoCivil">
+            <select name="estadodoCivil" 
+            onChange={( e ) => {
+              setFormstate({
+                ...formState,
+                estadoCivil: e.target.value
+              })
+            }}
+            >
               <option disabled selected value="">Selecciona una opción</option>
               <option value="soltero">Soltero</option>
               <option value="casado">Casado</option>
@@ -148,7 +239,14 @@ export const InfoCard = () => {
 
       <div className={Styles.uploadFoto}>
         <text>Foto del Empleado</text>
-        <input type='file' accept="image/png, image/jpeg, image/jpg"/>
+        <input type='file' accept="image/png, image/jpeg, image/jpg" name="fotoEmpleado"
+          onChange={( e ) => {
+            setFormstate({
+              ...formState,
+              fotoEmpleado: e.target.value
+            })
+          }}
+        />
       </div>
 
       <h1 className={Styles.title}>Contacto</h1>
@@ -159,17 +257,32 @@ export const InfoCard = () => {
 
           <label>
             Calle <br/>
-            <input type="text" name="calle"/>
+            <input type="text" name="calle" onChange={( e ) => {
+              setFormstate({
+                ...formState,
+                calle: e.target.value
+              })
+            }}/>
           </label>
 
           <label>
             Colonia <br/>
-            <input type="text" name="colonia"/>
+            <input type="text" name="colonia" onChange={( e ) => {
+              setFormstate({
+                ...formState,
+                colonia: e.target.value
+              })
+            }}/>
           </label>
 
           <label>
             Teléfono <br/>
-            <input type="tel" name="telefono"/>
+            <input type="tel" name="telefono" onChange={( e ) => {
+              setFormstate({
+                ...formState,
+                telefono: e.target.value
+              })
+            }}/>
           </label>
 
         </div>
@@ -229,6 +342,8 @@ export const InfoCard = () => {
         </div>
 
       </div>
+
+      <h1 className={Styles.title}>Dependientes <button className={Styles.botonAgregar}>Agregar Dependiente</button> </h1>
 
       <h1 className={Styles.title}>Información del Empleo</h1>
 
