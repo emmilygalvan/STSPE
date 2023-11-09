@@ -24,7 +24,7 @@
         font-size: 24px;
         font-weight: 400;
     }
-        .datosPersonales, .contacto, .infoEmpleado{               
+        .datosPersonales, .contacto, .infoEmpleo{               
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
             grid-gap: 2rem;

@@ -25,12 +25,38 @@ export const InfoCard = () => {
     nss: '',
     escolaridad: '',
     estadoCivil: '',
+    fotoEmpleado: '',
+    calle: '',
+    numeroInterior: '',
+    numeroExterior: '',
+    colonia: '',
+    codigoPostal: '',
+    estado: '',
+    municipio: '',
+    telefono: '',
+    celular: '',
+    mail: '',
+    tipoDependencia: '',
+    dependencia: '',
+    plantel: '',
+    fechaIngreso: '',
+    fechaSolicitud: '',
+    sueldo: '',
+    puesto: '',
+    horaEntrada: '',
+    horaSalida: '',
+    municipioQueretaro: '',
+    estatus: '',  
   })
 
   const handleStateChange = (event) => {
     const newState = event.target.value;
     setSelectedState(newState);
     setSelectedMunicipality('');
+    setFormstate({
+      ...formState,
+      estado: newState
+    })
   };
 
   const [selectedDependency, setSelectedDependency] = useState('');
@@ -266,11 +292,11 @@ export const InfoCard = () => {
           </label>
 
           <label>
-            Colonia <br/>
-            <input type="text" name="colonia" onChange={( e ) => {
+            Codigo Postal<br/>
+              <input type="number" name="codigoPostal" onChange={( e ) => {
               setFormstate({
                 ...formState,
-                colonia: e.target.value
+                codigoPostal: e.target.value
               })
             }}/>
           </label>
@@ -284,7 +310,6 @@ export const InfoCard = () => {
               })
             }}/>
           </label>
-
         </div>
 
         <div className={Styles.columna}>
@@ -292,11 +317,21 @@ export const InfoCard = () => {
           <label className={Styles.numeroie}>
             <label>
               Num. Interior<br/>
-              <input type='text' name="numeroInterior"/> 
+              <input type='text' name="numeroInterior" onChange={( e ) => {
+              setFormstate({
+                ...formState,
+                numeroInterior: e.target.value
+              })
+            }}/> 
             </label>
             <label>
               Num. Exterior<br/>
-              <input type='text' name="numeroExterior"/> 
+              <input type='text' name="numeroExterior" onChange={( e ) => {
+              setFormstate({
+                ...formState,
+                numeroExterior: e.target.value
+              })
+            }}/> 
             </label>
           </label>
           
@@ -312,21 +347,30 @@ export const InfoCard = () => {
         
           <label>
             Celular <br/>
-            <input type="tel" name="celular"/>
+            <input type="tel" name="celular"  onChange={( e ) => {
+              setFormstate({
+                ...formState,
+                celular: e.target.value
+              })
+            }}/>
           </label>
 
         </div>
 
         <div className={Styles.columna}>
-          
           <label>
-            Codigo Postal<br/>
-              <input type="number" name="codigoPostal"/>
+            Colonia <br/>
+            <input type="text" name="colonia" onChange={( e ) => {
+              setFormstate({
+                ...formState,
+                colonia: e.target.value
+              })
+            }}/>
           </label>
           
           <label>
             Municipio <br/>
-            <select name="municipio" value={selectedMunicipality} onChange={(event) => setSelectedMunicipality(event.target.value)}>
+            <select name="municipio" value={selectedMunicipality} onChange={(event) => setFormstate({...formState, municipio: event.target.value})}>
               <option disabled selected value="">Selecciona una opción</option>
               {municipiosPorEstado[selectedState]?.map((municipio, index) => (
               <option key={index} value={municipio}>{municipio}</option>
@@ -336,7 +380,12 @@ export const InfoCard = () => {
 
           <label>
             Correo<br/>
-              <input type="email" name="mail"/>
+              <input type="email" name="mail"  onChange={( e ) => {
+              setFormstate({
+                ...formState,
+                mail: e.target.value
+              })
+            }}/>
           </label>
 
         </div>
@@ -347,13 +396,18 @@ export const InfoCard = () => {
 
       <h1 className={Styles.title}>Información del Empleo</h1>
 
-      <div className={Styles.infoEmpleado}>
+      <div className={Styles.infoEmpleo}>
         
         <div className={Styles.columna}>
 
           <label>
             Tipo de Dependencia<br/>
-            <select name="tipoDependencia">
+            <select name="tipoDependencia"  onChange={( e ) => {
+              setFormstate({
+                ...formState,
+                tipoDependencia: e.target.value
+              })
+            }}>
               <option disabled selected value="">Selecciona una opción</option>
               <option value="descentralizada">Descentralizada</option>
               <option value="poderEjecutivo">Poder Ejecutivo</option>
@@ -367,12 +421,23 @@ export const InfoCard = () => {
             <input 
               type="date" 
               name="fechaIngreso"
+              onChange={( e ) => {
+                setFormstate({
+                  ...formState,
+                  fechaIngreso: e.target.value
+                })
+              }}
             />
           </label>
 
           <label>
             Puesto<br/>
-            <select name="puesto">
+            <select name="puesto"  onChange={( e ) => {
+              setFormstate({
+                ...formState,
+                puesto: e.target.value
+              })
+            }}>
               <option disabled selected value="">Selecciona una opción</option>
               <option value="Empleado">Descentralizada</option>
               <option value="Empleado">Poder Ejecutivo</option>
@@ -383,7 +448,7 @@ export const InfoCard = () => {
 
           <label>
             Region<br/>
-            <select name="municipioQueretaro" value={selectedMunicipality} onChange={(event) => setSelectedMunicipality(event.target.value)}>
+            <select name="municipioQueretaro" value={selectedMunicipality} onChange={(event) => setFormstate({...formState, municipioQueretaro: event.target.value })}>
               <option disabled selected value="">Selecciona una opción</option>
               {municipiosPorEstado.queretaro.map((municipio, index) => (
               <option key={index} value={municipio}>{municipio}</option>
