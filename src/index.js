@@ -1,3 +1,7 @@
 export * from './components/header/Header'
 export * from './components/info_card/InfoCard'
+export * from './components/register/RegisterForm'
 export * from './components/navbar/NavBarMenu'
+export * from './components/ins/Ins'
+export * from './components/table/TableEmploye'
+export * from './components/actionBar/ActionBar'

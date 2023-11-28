@@ -4,6 +4,7 @@ import logo from '../../assets/logo.png'
 import empleados from '../../assets/empleados.svg'
 import usuario from '../../assets/usuario.svg'
 import delegado from '../../assets/delegado.svg'
+import { Link } from 'react-router-dom'
 
 export const NavBarMenu = () => {
 
@@ -36,9 +37,9 @@ export const NavBarMenu = () => {
             <img className={Styles.logo} src={logo} alt="logo" />
 
             <div className={Styles.buttons}> 
-                <button> <img src={empleados} alt="empleados" /> Empleados </button>
-                <button> <img src={usuario} alt="usuario" /> Usuarios </button>
-                <button> <img src={delegado} alt="delegado" /> Delegados </button>
+                <button className={Styles.buttonsMenu}> <img src={empleados} alt="empleados" /> <Link to={'/empleados'} >Empleados</Link> </button>
+                <button className={Styles.buttonsMenu}> <img src={usuario} alt="usuario" /> Usuarios </button>
+                <button className={Styles.buttonsMenu}> <img src={delegado} alt="delegado" /> Delegados </button>
             </div>
         </div>
     )
