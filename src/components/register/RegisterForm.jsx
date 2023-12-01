@@ -65,9 +65,7 @@ export const RegisterForm = () => {
   };
 
   const [selectedDependency, setSelectedDependency] = useState('');
-  const [selectedPlantel, setSelectedPlantel] = useState('');
-
-  const [formularioDependienteAbierto, setFormularioDependienteAbierto] = useState(false);
+  const [selectedPlantel, setSelectedPlantel] = useState('');   
 
   const handleDependencyChange = (event) => {
     const newDependency = event.target.value;
@@ -77,8 +75,11 @@ export const RegisterForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log(formState);
-    const resp = await axios.post('http://192.168.1.76:3000/api/employee', formState);
+    if(formState.apellidoM == '' || formState.nombre == '' || formState.apellidoP == ''){
+      alert('El nombre completo es necesario')
+      return
+    }
+    const resp = await axios.post('http://localhost:3000/api/employee', formState);
     console.log(resp.data);
   }
 
@@ -98,6 +99,11 @@ export const RegisterForm = () => {
     if (value === 'option1') {
       setInputValue('');
     }
+
+    setFormstate({
+        ...formState,
+        dependencia: value
+    })
   };
 
   const handleInputChange = (event) => {
@@ -110,7 +116,7 @@ export const RegisterForm = () => {
         <img src={back} alt="back" className={Styles.back} onClick={() => {
           navigate('/empleados')
         }} />
-        <h1>Registro Empleado</h1>
+        <p className={Styles.screenTitle}>Registrar Sindicalizado</p>
       </div>
 
       <h1 className={Styles.title}>Datos Personales</h1>
@@ -404,7 +410,10 @@ export const RegisterForm = () => {
 
           <label>
             Municipio <br />
-            <select name="municipio" value={selectedMunicipality} onChange={(event) => setFormstate({ ...formState, municipio: event.target.value })}>
+            <select name="municipio" value={selectedMunicipality} onChange={(event) => {
+                setSelectedMunicipality(event.target.value)
+                setFormstate({ ...formState, municipio: event.target.value })
+            }}>
               <option disabled selected value="">Selecciona una opción</option>
               {municipiosPorEstado[selectedState]?.map((municipio, index) => (
                 <option key={index} value={municipio}>{municipio}</option>
@@ -609,14 +618,20 @@ export const RegisterForm = () => {
                 type="text"
                 name="area"
                 value={selectedPlantel}
-                onChange={(event) => setFormstate({...formState, plantel: event.target.value})}
+                onChange={(event) => {
+                    setSelectedPlantel(event.target.value)
+                    setFormstate({...formState, plantel: event.target.value})
+                }}
               />
             </div>
           ) : (
             <div className={Styles.areaP}>
               <label>
                 Area o Plantel <br />
-                <select name="plantel" value={selectedPlantel} onChange={(event) => setFormstate({...formState, plantel: event.target.value})}>
+                <select name="plantel" value={selectedPlantel} onChange={(event) => {
+                    setSelectedPlantel(event.target.value)
+                    setFormstate({...formState, plantel: event.target.value})
+                }}>
                   <option disabled selected value="">Selecciona una opción</option>
                   {plantelesPorDependencia[selectedDependency]?.map((plantel, index) => (
                     <option key={index} value={plantel}>{plantel}</option>
@@ -648,7 +663,7 @@ export const RegisterForm = () => {
 
       </div>
       
-      <input type="submit" value="Guardar Empleado" />
+      <input type="submit" value="Guardar Empleado" className={Styles.sendForm}/>
     </form>
   )
 }

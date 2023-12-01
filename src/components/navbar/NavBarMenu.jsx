@@ -4,12 +4,14 @@ import logo from '../../assets/logo.png'
 import empleados from '../../assets/empleados.svg'
 import usuario from '../../assets/usuario.svg'
 import delegado from '../../assets/delegado.svg'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export const NavBarMenu = () => {
 
     const [open, setOpen] = useState(false);
     const navRef = useRef();
+
+    const navigate = useNavigate();
 
     return (
         <div
@@ -34,12 +36,14 @@ export const NavBarMenu = () => {
             }
         }
         >
-            <img className={Styles.logo} src={logo} alt="logo" />
+            <img className={Styles.logo} src={logo} alt="logo" onClick={() => {
+            navigate('/')
+            }} />
 
             <div className={Styles.buttons}> 
-                <button className={Styles.buttonsMenu}> <img src={empleados} alt="empleados" /> <Link to={'/empleados'} >Empleados</Link> </button>
-                <button className={Styles.buttonsMenu}> <img src={usuario} alt="usuario" /> Usuarios </button>
-                <button className={Styles.buttonsMenu}> <img src={delegado} alt="delegado" /> Delegados </button>
+                <button className={Styles.buttonsMenu}> <img src={empleados} alt="empleados" /> <Link to={'/empleados'}><p className={Styles.textButton}>Empleados</p></Link> </button>
+                <button className={Styles.buttonsMenu}> <img src={usuario} alt="usuario" /><p className={Styles.textButton}>Usuarios</p></button>
+                <button className={Styles.buttonsMenu}> <img src={delegado} alt="delegado" /><p className={Styles.textButton}>Delegados</p></button>
             </div>
         </div>
     )

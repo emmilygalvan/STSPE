@@ -1,4 +1,4 @@
-import { Header, InfoCard, NavBarMenu, Ins, TableEmploye, ActionBar } from "."
+import { Header, NavBarMenu} from "."
 import { ChakraProvider } from '@chakra-ui/react'
 import { AppRouter } from "./router/AppRouter"
 

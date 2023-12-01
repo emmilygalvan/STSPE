@@ -3,7 +3,6 @@
     overflow-y: scroll;
     width: 1280px;
 }
-
 .datosEmpleado::-webkit-scrollbar {
     display: none;
 }
@@ -15,10 +14,16 @@
         .back {
             margin-right: 16px;
             height: 1.2rem;
+            cursor: pointer;
+        }
+        .screenTitle{
+            color: #223843;
+            font-size: 32px;
+            font-weight: 600;
         }
         
     .title{
-        padding-top: 2rem;
+        margin-top: 2rem;
         margin-bottom: 1.5rem;
         color: #ff8000;
         font-size: 24px;
@@ -112,6 +117,7 @@
             font-weight: 400;
             align-items: center;
             position: relative;
+            margin: 16px 0px 24px 0px;
         }
             input[type="file"]{
                 margin-left: 1.5rem;
@@ -179,7 +185,6 @@
                 margin-top: .5rem;
                 border: none;
             }
-
                 .numeroie{
                     display: grid;
                     grid-template-columns: 1fr 1fr;
@@ -207,7 +212,7 @@
                 width: 14rem;
                 height: 2.5rem;
                 border-radius: 0.5rem;
-                background: #FF8000;
+                background: #4ec253;
                 border: none;
                 color: #FFF;
                 font-size: 1.2rem;
@@ -218,6 +223,12 @@
                 position: relative;
                 margin: 4rem 0 4rem 0;
             }
+
+            input[type="submit"]:hover {
+                background-color: #3a903e;
+                cursor: pointer;
+            }
+
             .areaP{ 
                 margin-bottom: 2rem;
             }
@@ -233,7 +244,6 @@
                 color: #223843;
                 width: 230px;
                 border: none;
-                box-shadow: none;
                 display: flex;
                 flex-direction: row;
                 align-items: center;
@@ -242,20 +252,15 @@
                 justify-content: space-between;
             }
             .botonAgregar:hover {   
-                box-shadow: none;
-                transition: box-shadow 1s ease-in-out; 
                 font-weight: 400;
             }
-            .botonAgregar:hover svg{   
-                box-shadow: 0px 0px 10px 0px rgba(34, 56, 67, 0.45);
-                transition: all 0.2s ease;
-            }
             .iconoAgregar {
-                transition: box-shadow 1s ease-in-out; 
+                
                 border-radius: 100px;
-              }
+            }
             
-              .botonAgregar:hover .iconoAgregar {
+            .botonAgregar:hover .iconoAgregar {
                 border-radius: 100px;
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Ajustar valores según tus preferencias */
-              }
+                transition: box-shadow 0.0001s ease-in-out; 
+            }

@@ -30,7 +30,7 @@
         border: none;
         width: 5rem;
         border-radius: 8px;
-        background: #FF8000;
+        background: #4ec253;
         height: 32px;
         color: #FFF;
         text-align: center;
@@ -41,6 +41,10 @@
         padding: 0 8px 0 8px;
         margin-right: 24px;
     }
+    .new:hover {
+        cursor: pointer;
+        background-color: #3a903e;
+    }
     .search {
         border-radius: 8px;
         background: #F1F1F1;
@@ -49,7 +53,5 @@
         background: url('../../assets/loupe.svg') no-repeat scroll 10px 10px #F1F1F1;
         padding-left: 32px;
         font-size: 14px;
-    }
-    input[type="text"]:focus{
-        border: 1.5px solid #FF8000;
+        width: 20px;
     }
