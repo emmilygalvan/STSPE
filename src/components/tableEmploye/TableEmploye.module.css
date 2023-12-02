@@ -88,3 +88,20 @@
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Ajustar valores según tus preferencias */
         transition: box-shadow 0.0001s ease-in-out; 
     }
+    
+    .activo {
+        color: green;
+      }
+      
+      .licencia {
+        color: yellow;
+      }
+      
+      .inactivo {
+        color: red;
+      }
+      
+      .finado {
+        color: black;
+      }
+      

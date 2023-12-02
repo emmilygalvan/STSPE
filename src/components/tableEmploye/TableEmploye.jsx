@@ -32,6 +32,24 @@ export const TableEmploye = () => {
         setPage(lastPage)
     }
 
+    const getStatusColorClass = (estatus) => {
+        switch (estatus) {
+          case 'activo':
+            console.log('Activo');
+            return Styles.activo;
+          case 'licencia':
+            console.log('Licencia');
+            return Styles.licencia;
+          case 'baja':
+          case 'expulsado':
+            console.log('Inactivo');
+            return Styles.inactivo;
+          case 'finado':
+            console.log('Finado');
+            return Styles.finado;
+        }
+      };
+
     useEffect(() => {
         const fetchEmployees = async () => {
             const resp = await axios.get(`http://localhost:3000/api/employee?p=${page}`);
@@ -89,9 +107,21 @@ export const TableEmploye = () => {
                                     <td className={Styles.dependencia}>
                                         {emp.dependencia}
                                     </td>
+                                    
                                     <td className={Styles.estatus}>
+                                        <span 
+                                        style={{
+                                            display: 'inline-block',
+                                            width: '10px',
+                                            height: '10px',
+                                            borderRadius: '50%',
+                                            marginRight: '5px',
+                                            backgroundColor: getStatusColorClass(emp.estatus),
+                                          }}
+                                        />
                                         {emp.estatus}
-                                    </td>
+                                    </td>                             
+
                                     <td className={Styles.actions}> 
                                         <button className={Styles.edit} 
                                             onClick={() => {
