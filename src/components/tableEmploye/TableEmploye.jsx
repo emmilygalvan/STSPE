@@ -1,11 +1,16 @@
 import Styles from './TableEmploye.module.css';
 import React, { useEffect, useState } from 'react';
-import add from '../../assets/mass.svg';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Button } from '@chakra-ui/react';
+import back from '../../assets/back.svg'
+import next from '../../assets/next.svg'
+import last from '../../assets/lastpage.svg'
+import first from '../../assets/firstpage.svg'
+import edit from '../../assets/editButton.svg'
 
 export const TableEmploye = () => {
+    
     const navigate = useNavigate();
     const [data, setData] = useState([]);
     const [lastPage, setLastPage] = useState(null);
@@ -47,36 +52,69 @@ export const TableEmploye = () => {
                 <p> Cargando data </p>
             ) : (
                 <>
-                               <table className={Styles.table}>
-                    <thead>
+                    <table className={Styles.table}>
 
-                        <th>Nombre</th>
-                        <th>Apellido Paterno</th>
-                        <th>Apellido Materno</th>
+                        <thead>
 
-                    </thead>
-                    <tbody className={Styles.content}>
-                        {data.map((emp, i) => (
-                            <tr
-                                key={i}
-                                onClick={() => {
-                                    navigate('/empleado', {
-                                        state: emp,
-                                    });
-                                }}
-                            >
-                                <td>{emp.nombre}</td>
-                                <td>{emp.apellidop}</td>
-                                <td>{emp.apellidom}</td>
-                            </tr>
-                        ))}
-                    </tbody>
+                            <th></th>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Dependencia</th>
+                            <th>Estatus</th>
+
+                        </thead>
+
+                        <tbody className={Styles.content}>
+                            {data.map((emp, i) => (
+                                <tr
+                                    key={i}
+                                    onClick={() => {
+                                        navigate('/empleado', {
+                                            state: emp,
+                                        });
+                                    }}
+                                >
+                                    <td  className={Styles.photo}> 
+                                        <img className={Styles.photoConteiner}/> 
+                                        {emp.fotoempleado}
+                                    </td>
+                                    <td className={Styles.id}>
+                                        {emp.id} 
+                                    </td>
+                                    <td  className={Styles.name}>
+                                        {emp.nombre}
+                                        {emp.apellidop} 
+                                        {emp.apellidom}
+                                    </td>
+                                    <td className={Styles.dependencia}>
+                                        {emp.dependencia}
+                                    </td>
+                                    <td className={Styles.estatus}>
+                                        {emp.estatus}
+                                    </td>
+                                    <td className={Styles.actions}> 
+                                        <button className={Styles.edit} 
+                                            onClick={() => {
+                                                navigate('/editEmpleado', {
+                                                    state
+                                                })
+                                            }}>
+
+                                            <img src={edit} alt="edit"/> 
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
                 </table>
-                <div>
-                    <button onClick={prevPage} >-1</button>
-                    <button onClick={nextPage}>+</button>
-                    <button onClick={goLastPage}>ultima pagina</button>
+
+                <div className={Styles.pagination}>
+                    <button onClick={goLastPage} className={Styles.firsend} >  <img src={first} alt="first"/> </button>
+                    <button onClick={prevPage}  className={Styles.pag} > <img src={back} alt="back"/> </button>
+                    <button onClick={nextPage}  className={Styles.pag} > <img src={next} alt="next"/> </button>
+                    <button onClick={goLastPage} className={Styles.pag} >  <img src={last} alt="last"/> </button>
                 </div>
+
                 </>
  
             )}
