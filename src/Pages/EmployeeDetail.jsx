@@ -1,14 +1,16 @@
 import { Flex } from "@chakra-ui/react";
-import { useLocation } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 
+import QRCode from "react-qr-code";
 
 export const EmployeeDetail = () => {
 
     const { state } = useLocation();
 
-    const { id, nombre, apellidoP, apellidoM, } = state;
+    const navigate = useNavigate();
 
-    console.log(nombre, apellidoP, apellidoM,  );
+    const { id, nombre, apellidop, apellidoM, } = state;
+
 
   return (
     <div
@@ -19,21 +21,17 @@ export const EmployeeDetail = () => {
             width: '1300px'
         }}
     >
-        <h1
-            style={{
-                background:'red'
-            }}
-        >
-            { id }
-        </h1>
+        <div>
+            <QRCode value={id} />
+        </div>
         <h2>
             {
-                nombre.nombre
+                nombre
             }
         </h2>
         <h2>
             {
-                nombre.apellidoP
+                apellidop
             }
         </h2>
         <h2>
@@ -41,6 +39,21 @@ export const EmployeeDetail = () => {
                 nombre.apellidoM
             }
         </h2>
+        <button style={{
+            background:'#FF8000',
+            border: 'none',
+            height: '32px',
+            width:'280px',
+            colo:'white',
+        }}
+            onClick={() => {
+                navigate('/editEmpleado', {
+                    state
+                })
+            }}
+        >
+            Editar
+        </button>
     </div>
   )
 }

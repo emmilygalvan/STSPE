@@ -1,58 +1,111 @@
-import React, { useState } from 'react';
-import Styles from './RegisterForm.module.css';
+import React, { useEffect, useState } from 'react';
+import Styles from '../register/RegisterForm.module.css';
 import calendario from '../../assets/calendar.svg'
 import drop from '../../assets/dropdown.svg'
-import { estados } from './estados';
-import municipiosPorEstado from './municipios';
+import { estados } from '../register/estados';
+import municipiosPorEstado from '../register/municipios';
 import back from '../../assets/back.svg'
 import axios from 'axios';
-import { opcionesDependencia } from './opciones';
+import { opcionesDependencia } from '../register/opciones';
 import agregar from '../../assets/botonmas.svg';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
-export const RegisterForm = () => {
+export const EditForm = () => {
+
+  const { state } = useLocation();
+
+  const {
+    nombre,
+    apellidop,
+    apellidom,
+    fechanacimiento,
+    lugarnacimiento,
+    genero, 
+    nacionalidad,
+    curp,
+    rfc,
+    nss,
+    escolaridad,
+    estadocivil,
+    fotoempleado,
+    calle,
+    numerointerior,
+    numeroexterior,
+    colonia,
+    codigopostal,
+    estado,
+    municipio,
+    telefono,
+    celular,
+    mail,
+    tipodependencia,
+    dependencia,
+    plantel,
+    fechaingreso,
+    fechasolicitud,
+    fechaingresostspe,
+    sueldo,
+    puesto,
+    horaentrada,
+    horasalida,
+    municipioqueretaro,
+    estatus,
+  } = state;
 
   const [selectedState, setSelectedState] = useState('');
   const [selectedMunicipality, setSelectedMunicipality] = useState('');
 
+  const formatedNacionalidad = () => {
+    const fL = nacionalidad.charAt(0);
+    const fLC = fL.toUpperCase();
+    const rl = nacionalidad.slice(1);
+    const cw = fLC + rl
+    console.log(cw)
+    return cw
+  }
+
   const [formState, setFormstate] = useState({
-    nombre: '',
-    apellidoP: '',
-    apellidoM: '',
-    fechaNacimiento: '',
-    lugarNacimiento: '',
-    genero: '',
-    nacionalidad: '',
-    curp: '',
-    rfc: '',
-    nss: '',
-    escolaridad: '',
-    estadoCivil: '',
-    fotoEmpleado: '',
-    calle: '',
-    numeroInterior: '',
-    numeroExterior: '',
-    colonia: '',
-    codigoPostal: '',
-    estado: '',
-    municipio: '',
-    telefono: '',
-    celular: '',
-    mail: '',
-    tipoDependencia: '',
-    dependencia: '',
-    plantel: '',
-    fechaIngreso: '',
-    fechaSolicitud: '',
-    fechaIngresoSTSPE: '',
-    sueldo: '',
-    puesto: '',
-    horaEntrada: '',
-    horaSalida: '',
-    municipioQueretaro: '',
-    estatus: '',
+    nombre: nombre,
+    apellidoP: apellidop,
+    apellidoM: apellidom,
+    fechaNacimiento: fechanacimiento,
+    lugarNacimiento: lugarnacimiento,
+    genero: genero,
+    nacionalidad: formatedNacionalidad(),
+    curp: curp,
+    rfc: rfc,
+    nss: nss,
+    escolaridad: escolaridad,
+    estadoCivil: estadocivil,
+    fotoEmpleado: fotoempleado,
+    calle: calle,
+    numeroInterior: numerointerior,
+    numeroExterior: numeroexterior,
+    colonia: colonia,
+    codigoPostal: codigopostal,
+    estado: estado,
+    municipio: municipio,
+    telefono: telefono,
+    celular: celular,
+    mail: mail,
+    tipoDependencia: tipodependencia,
+    dependencia: dependencia,
+    plantel: plantel,
+    fechaIngreso: fechaingreso,
+    fechaSolicitud: fechasolicitud,
+    fechaIngresoSTSPE: fechaingresostspe,
+    sueldo: sueldo,
+    puesto: puesto,
+    horaEntrada: horaentrada,
+    horaSalida: horasalida,
+    municipioQueretaro: municipioqueretaro,
+    estatus: estatus,
     dependientes: []
   })
+
+  useEffect(() => {
+    console.log(state, formState)
+  }, [])
 
   const handleStateChange = (event) => {
     const newState = event.target.value;
@@ -75,7 +128,6 @@ export const RegisterForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log(formState)
     if(formState.apellidoM == '' || formState.nombre == '' || formState.apellidoP == ''){
       alert('El nombre completo es necesario')
       return
@@ -116,7 +168,6 @@ export const RegisterForm = () => {
 
   const handleEstatusChange = (event) => {
     const nuevoEstatus = event.target.value;
-    console.log(nuevoEstatus)
     setSelectedOption(nuevoEstatus);
     setFormstate({
       ...formState,
@@ -147,7 +198,7 @@ export const RegisterForm = () => {
 
           <label>
             Nombre <br />
-            <input type="text" name="nombre" onChange={(e) => {
+            <input value={formState.nombre} type="text" name="nombre" onChange={(e) => {
               setFormstate({
                 ...formState,
                 nombre: e.target.value
@@ -158,6 +209,7 @@ export const RegisterForm = () => {
           <label>
             Fecha de Nacimiento <br />
             <input
+              value={formState.fechaNacimiento}
               type="date"
               name="fechaNacimiento"
               onChange={(e) => {
@@ -171,14 +223,14 @@ export const RegisterForm = () => {
 
           <p> Nacionalidad </p>
           <label className={Styles.checks}>
-            <input type='radio' name="nacionalidad" value="mexicana" onChange={(e) => {
+            <input type='radio' defaultValue={formState.nacionalidad} name="nacionalidad" value="mexicana" onChange={(e) => {
               setFormstate({
                 ...formState,
                 nacionalidad: e.target.value
               })
             }} />
             <p>Mexicana</p>
-            <input type='radio' name="nacionalidad" value="extranjera" onChange={(e) => {
+            <input type='radio' defaultValue={formState.nacionalidad} name="nacionalidad" value="extranjera" onChange={(e) => {
               setFormstate({
                 ...formState,
                 nacionalidad: e.target.value
@@ -189,7 +241,7 @@ export const RegisterForm = () => {
 
           <label>
             NSS <br />
-            <input type="text" name="nss" onChange={(e) => {
+            <input value={formState.nss} type="text" name="nss" onChange={(e) => {
               setFormstate({
                 ...formState,
                 nss: e.target.value
@@ -203,13 +255,14 @@ export const RegisterForm = () => {
 
           <label>
             Apellido Paterno<br />
-            <input type="text" name="apellidoP" onChange={(e) => {
+            <input value={formState.apellidoP} type="text" name="apellidoP" onChange={(e) => {
               setFormstate({
                 ...formState,
                 apellidoP: e.target.value
               })
             }} />
           </label>
+
 
           <label>
             Lugar de Nacimiento<br/>
@@ -452,96 +505,6 @@ export const RegisterForm = () => {
           </label>
         </div>
 
-      </div>
-      
-      <div className={Styles.dependiente}>
-        <h1 className={Styles.title}>Dependientes</h1>
-        <button className={Styles.botonAgregar}>Agregar Dependiente<img className={Styles.iconoAgregar} src={agregar} alt="agregar" /></button>
-      </div>
-
-      <div className={Styles.dependienteInfo}> 
-        <div className={Styles.columna}> {/* nombreDependiente, fechaNacimientoDependiente */}
-          <label>
-            Nombre <br />
-            <input type="text" name="nombreDependiente" onChange={(e) => {
-              setFormstate({
-                ...formState,
-                nombreDependiente: e.target.value
-              })
-            }} />
-          </label>
-
-          <label>
-            Fecha de Nacimiento <br />
-            <input
-              type="date"
-              name="fechaNacimientoDependiente"
-              onChange={(e) => {
-                setFormstate({
-                  ...formState,
-                  fechaNacimientoDependiente: e.target.value
-                })
-              }}
-            />
-          </label>
-        </div>
-
-        <div className={Styles.columna}> {/* apellidoPDependiente, curpDependiente */}
-          <label>
-            Apellido Paterno<br />
-            <input type="text" name="apellidoPDependiente" onChange={(e) => {
-              setFormstate({
-                ...formState,
-                apellidoPDependiente: e.target.value
-              })
-            }} />
-          </label>
-
-          <label>
-            CURP <br />
-            <input type="text" name="curp" onChange={(e) => {
-              setFormstate({
-                ...formState,
-                curpDependiente: e.target.value
-              })
-            }} />
-          </label>
-
-        </div>
-
-        <div className={Styles.columna}> {/* apellidoMDependiente, parentesco*/}
-          
-          <label>
-            Apellido Materno<br />
-            <input type="text" name="apellidoMDependiente" onChange={(e) => {
-              setFormstate({
-                ...formState,
-                apellidoMDependiente: e.target.value
-              })
-            }} />
-          </label>
-
-          <label>
-            Parentesco<br />
-            <select name="parentesco" onChange={(e) => {
-              setFormstate({
-                ...formState,
-                parentensco: e.target.value
-              })
-            }}>
-              <option disabled selected value="">Selecciona una opción</option>
-              <option value="esposa">Esposa</option>
-              <option value="esposo">Esposo</option>
-              <option value="hija">Hija</option>
-              <option value="hijo">Hijo</option>
-              <option value="madre">Madre</option>
-              <option value="padre">Padre</option>
-              <option value="hermana">Hermana</option>
-              <option value="hermano">Hermano</option>
-            </select>
-          </label>
-
-        </div>
       </div>
 
       <h1 className={Styles.title}>Información del Empleo</h1>

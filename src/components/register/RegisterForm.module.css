@@ -264,3 +264,25 @@
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Ajustar valores según tus preferencias */
                 transition: box-shadow 0.0001s ease-in-out; 
             }
+            .motivoBaja{
+                font-size: 20px;
+            }
+            .motivoBajaInput{
+                height: 96px;
+                resize: none;
+                width: 100%;
+                border-radius: 0.5rem;
+                background: #F1F1F1;
+                padding: 8px;
+                color: #223843;
+                font-size: 1.25rem;
+                font-weight: 400;
+                margin-top: .5rem;
+                border: none;
+            }
+
+            .motivoBajaInput:focus{
+                outline: none; 
+                border-radius: 0.5rem;
+                border: 1.5px solid #FF8000;
+            }
