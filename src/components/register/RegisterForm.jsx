@@ -55,6 +55,8 @@ export const RegisterForm = () => {
     dependientes: []
   })
 
+  
+
   const handleStateChange = (event) => {
     const newState = event.target.value;
     setSelectedState(newState);
@@ -562,6 +564,94 @@ export const RegisterForm = () => {
 
         </div>
       </div>
+      
+      {formState.dependientes.map((dependiente, index) => (
+        <div key={index} className={Styles.dependienteInfo}>
+          <div className={Styles.columna}> {/* nombreDependiente, fechaNacimientoDependiente */}
+            <label>
+              Nombre <br />
+              <input
+                type="text"
+                name={'nombreDependiente-${index}'}
+                onChange={(e) =>
+                  handleDependienteChange(index, 'nombreDependiente', e.target.value)
+                }
+              />
+            </label>
+
+            <label>
+              Fecha de Nacimiento <br />
+              <input
+                type="date"
+                name="fechaNacimientoDependiente"
+                onChange={(e) => {
+                  setFormstate({
+                    ...formState,
+                    fechaNacimientoDependiente: e.target.value
+                  })
+                }}
+              />
+            </label>
+          </div>
+
+          <div className={Styles.columna}> {/* apellidoPDependiente, curpDependiente */}
+            <label>
+              Apellido Paterno<br />
+              <input type="text" name="apellidoPDependiente" onChange={(e) => {
+                setFormstate({
+                  ...formState,
+                  apellidoPDependiente: e.target.value
+                })
+              }} />
+            </label>
+
+            <label>
+              CURP <br />
+              <input type="text" name="curp" onChange={(e) => {
+                setFormstate({
+                  ...formState,
+                  curpDependiente: e.target.value
+                })
+              }} />
+            </label>
+
+          </div>
+
+          <div className={Styles.columna}> {/* apellidoMDependiente, parentesco*/}
+            
+            <label>
+              Apellido Materno<br />
+              <input type="text" name="apellidoMDependiente" onChange={(e) => {
+                setFormstate({
+                  ...formState,
+                  apellidoMDependiente: e.target.value
+                })
+              }} />
+            </label>
+
+            <label>
+              Parentesco<br />
+              <select name="parentesco" onChange={(e) => {
+                setFormstate({
+                  ...formState,
+                  parentensco: e.target.value
+                })
+              }}>
+                <option disabled selected value="">Selecciona una opción</option>
+                <option value="esposa">Esposa</option>
+                <option value="esposo">Esposo</option>
+                <option value="hija">Hija</option>
+                <option value="hijo">Hijo</option>
+                <option value="madre">Madre</option>
+                <option value="padre">Padre</option>
+                <option value="hermana">Hermana</option>
+                <option value="hermano">Hermano</option>
+              </select>
+            </label>
+
+          </div>
+        </div>
+      ))}
 
       <h1 className={Styles.title}>Información del Empleo</h1>
 
@@ -718,7 +808,7 @@ export const RegisterForm = () => {
         </label>
       )}
 
-      <div className={Styles.rolDelegado}> {/* delegado */}
+      <div className={Styles.rolDelegado}> {/* */}
 
         <div className={Styles.columna}> 
           
@@ -727,13 +817,29 @@ export const RegisterForm = () => {
             <input className={Styles.delegadoCheck} type="checkbox" onChange={toggleDelegadoSwitch} />
           </label>
 
+          <div className={Styles.rolDelegado} style={{ display: delegadoSwitchState ? 'none' : 'block' }}>
+            <div className={Styles.columna}> 
+              <label className={Styles.delegadoForm}>
+                <p>Convertir en Subdelegado</p>
+                <input className={Styles.delegadoCheck} type="checkbox" onChange={toggleSubdelegadoSwitch} />
+              </label>
+            </div>
+          </div>
+
         </div>
 
         <div className={Styles.columnaDelegados}> 
   
           <div>
-            <select style={{ display: delegadoSwitchState ? 'none' : 'block' }}>
-              <option disabled selected value="">Selecciona una opción</option>
+            <select className={Styles.selectDelegado} style={{ display: delegadoSwitchState ? 'none' : 'block' }}>
+              <option disabled selected value="">Selecciona un Delegado</option>
+             
+            </select>
+          </div>
+
+          <div>
+            <select className={Styles.selectDelegado} style={{ display: subdelegadoSwitchState ? 'none' : 'block' }}>
+              <option disabled selected value="">Selecciona un Subdelegado</option>
             </select>
           </div>
 
@@ -741,29 +847,7 @@ export const RegisterForm = () => {
       
       </div>
 
-      <div className={Styles.rolDelegado} style={{ display: delegadoSwitchState ? 'none' : 'block' }}> {/* Subdelegado */}
-        <div className={Styles.columna}> 
-
-          <label className={Styles.delegadoForm}>
-            <p>Convertir en Subdelegado</p>
-            <input className={Styles.delegadoCheck} type="checkbox" onChange={toggleSubdelegadoSwitch} />
-          </label>
-
-        </div>
-
-        <div className={Styles.columnaDelegados}>
-
-          <div>
-            <select style={{ display: subdelegadoSwitchState ? 'none' : 'block' }}>
-              <option disabled selected value="">Selecciona una opción</option>
-            </select>
-          </div>
-
-        </div>
-        
-      </div>
-
-      <input type="submit" value="Guardar Empleado" className={Styles.sendForm}/>
+    <input type="submit" value="Guardar Empleado" className={Styles.sendForm}/>
     
     </form>
   )
