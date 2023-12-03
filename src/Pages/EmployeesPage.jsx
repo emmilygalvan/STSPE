@@ -1,12 +1,14 @@
-import { ActionBar } from '../components/actionBar/ActionBar'
-import { TableEmploye } from '../components/tableEmploye/TableEmploye'
-import { Ins } from '../components/ins/Ins'
+import { ActionBar } from '../components/actionBar/ActionBar';
+import { TableEmploye } from '../components/tableEmploye/TableEmploye';
+import { Ins } from '../components/ins/Ins';
+import { useState } from 'react';
 
 export const EmployeesPage = () => {
-  return (
-    <>
-        <ActionBar />
-        <TableEmploye />
-    </>
-  )
-}
+    const [data, setData] = useState([]);
+    return (
+        <>
+            <ActionBar setData={setData} />
+            <TableEmploye  data={data} setData={setData}/>
+        </>
+    );
+};

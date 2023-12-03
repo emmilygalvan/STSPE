@@ -9,10 +9,10 @@ import last from '../../assets/lastpage.svg'
 import first from '../../assets/firstpage.svg'
 import edit from '../../assets/editButton.svg'
 
-export const TableEmploye = () => {
+export const TableEmploye = ( { data, setData} ) => {
     
     const navigate = useNavigate();
-    const [data, setData] = useState([]);
+
     const [lastPage, setLastPage] = useState(null);
     const [page, setPage] = useState(1);
 
