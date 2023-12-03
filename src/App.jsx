@@ -1,5 +1,4 @@
 import { Header, NavBarMenu} from "."
-import { ChakraProvider } from '@chakra-ui/react'
 import { AppRouter } from "./router/AppRouter"
 
 export const App = () => {
@@ -14,6 +13,7 @@ export const App = () => {
                 alignItems: 'center'
             }}
         >
+
             <Header />
             <NavBarMenu /> 
             <AppRouter />

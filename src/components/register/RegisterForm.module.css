@@ -35,7 +35,18 @@
             grid-gap: 2rem;
             width: 100%;
         }
+        .rolDelegado{               
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 2rem;
+            width: 100%;
+        }
             .columna{
+                display: grid;
+                font-size: 1.25rem;
+                font-weight: 400;
+            }
+            .columnaDelegados{
                 display: grid;
                 font-size: 1.25rem;
                 font-weight: 400;
@@ -285,4 +296,15 @@
                 outline: none; 
                 border-radius: 0.5rem;
                 border: 1.5px solid #FF8000;
+            }
+
+            .delegadoForm{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                height: 32px;
+                margin-top: 12px;
+            }
+            .delegadoCheck{
+                margin-left: 16px;
             }

@@ -9,6 +9,7 @@ import axios from 'axios';
 import { opcionesDependencia } from './opciones';
 import agregar from '../../assets/botonmas.svg';
 import { Link, useNavigate } from 'react-router-dom';
+import { Switch } from '@chakra-ui/react'
 
 export const RegisterForm = () => {
 
@@ -89,7 +90,7 @@ export const RegisterForm = () => {
   }
 
   const plantelesPorDependencia = {
-    COBAQ: ["DIRECCION GENERAL", "EMSAD 12", "EMSAD11", "EMSAD13", "EMSAD14", "EMSAD15", "EMSAD18", "EMSAD19", "EMSAD20", "EMSAD21", "EMSAD22", "EMSAD23", "EMSAD24", "EMSAD25", "EMSAD26", "EMSAD27", "EMSAD28", "EMSAD3", "EMSAD30", "EMSAD31", "EMSAD32", "EMSAD4", "EMSAD6", "EMSAD7", "EMSAD8", "EMSAD9", "PLANTEL 1", "PLANTEL 2", "PLANTEL 3", "PLANTEL 4", "PLANTEL 5", "PLANTEL 6", "PLANTEL 7", "PLANTEL 8", "PLANTEL 9", "PLANTEL 10", "PLANTEL 11", "PLANTEL 12", "PLANTEL 13", "PLANTEL 14", "PLANTEL 15", "PLANTEL 16", "PLANTEL 17", "PLANTEL 18", "PLANTEL 19", "PLANTEL 20", "PLANTEL 21", "PLANTEL 22", "PLANTEL 23", "PLANTEL 24", "PLANTEL 25", "PLANTEL 26", "PLANTEL 27", "PLANTEL 28", "PLANTEL 29", "PLANTEL 30", "PLANTEL 31", "PLANTEL 32", "PLANTEL 33", "PLANTEL 34"],
+    4: ["DIRECCION GENERAL", "EMSAD 12", "EMSAD11", "EMSAD13", "EMSAD14", "EMSAD15", "EMSAD18", "EMSAD19", "EMSAD20", "EMSAD21", "EMSAD22", "EMSAD23", "EMSAD24", "EMSAD25", "EMSAD26", "EMSAD27", "EMSAD28", "EMSAD3", "EMSAD30", "EMSAD31", "EMSAD32", "EMSAD4", "EMSAD6", "EMSAD7", "EMSAD8", "EMSAD9", "PLANTEL 1", "PLANTEL 2", "PLANTEL 3", "PLANTEL 4", "PLANTEL 5", "PLANTEL 6", "PLANTEL 7", "PLANTEL 8", "PLANTEL 9", "PLANTEL 10", "PLANTEL 11", "PLANTEL 12", "PLANTEL 13", "PLANTEL 14", "PLANTEL 15", "PLANTEL 16", "PLANTEL 17", "PLANTEL 18", "PLANTEL 19", "PLANTEL 20", "PLANTEL 21", "PLANTEL 22", "PLANTEL 23", "PLANTEL 24", "PLANTEL 25", "PLANTEL 26", "PLANTEL 27", "PLANTEL 28", "PLANTEL 29", "PLANTEL 30", "PLANTEL 31", "PLANTEL 32", "PLANTEL 33", "PLANTEL 34"],
   };
 
   const [selectedOption, setSelectedOption] = useState('');
@@ -134,8 +135,22 @@ export const RegisterForm = () => {
     }
   };
 
+  const [delegadoSwitchState, setDelegadoSwitchState] = useState(false);
+  const [subdelegadoSwitchState, setSubdelegadoSwitchState] = useState(false);
+
+  const toggleDelegadoSwitch = () => {
+    setDelegadoSwitchState(!delegadoSwitchState);
+  };
+
+  const toggleSubdelegadoSwitch = () => {
+    setSubdelegadoSwitchState(!subdelegadoSwitchState);
+  };
+
+
+
   return (
     <form className={Styles.datosEmpleado} onSubmit={handleSubmit}>
+
       <div className={Styles.screenName}>
         <img src={back} alt="back" className={Styles.back} onClick={() => {
           navigate('/empleados')
@@ -278,7 +293,7 @@ export const RegisterForm = () => {
             }} />
           </label>
 
-          <text>Genero</text>
+          <label>Genero</label>
           <label className={Styles.checks}>
             <input type='radio' name="genero" value="masculino" onChange={(e) => {
               setFormstate({
@@ -329,7 +344,7 @@ export const RegisterForm = () => {
       </div>
 
       <div className={Styles.uploadFoto}> {/*fotoEmpleado*/}
-        <text>Foto del Empleado</text>
+        <label>Foto del Empleado</label>
         <input type='file' accept="image/png, image/jpeg, image/jpg" name="fotoEmpleado"
           onChange={(e) => {
             setFormstate({
@@ -633,7 +648,7 @@ export const RegisterForm = () => {
 
         <div className={Styles.columna}> {/* Area o Plantel, fechaSolicitud, estado*/}
 
-          {selectedOption !== 'COBAQ' ? (
+          {selectedOption !== '4' ? (
             <div className={Styles.areaP}>
               <label>Area o Plantel</label>
               <input
@@ -702,9 +717,54 @@ export const RegisterForm = () => {
           />
         </label>
       )}
-      
-      <input type="submit" value="Guardar Empleado" className={Styles.sendForm}/>
 
+      <div className={Styles.rolDelegado}> {/* delegado */}
+
+        <div className={Styles.columna}> 
+          
+          <label className={Styles.delegadoForm}>
+            <p>Convertir en Delegado  </p>
+            <input className={Styles.delegadoCheck} type="checkbox" onChange={toggleDelegadoSwitch} />
+          </label>
+
+        </div>
+
+        <div className={Styles.columnaDelegados}> 
+  
+          <div>
+            <select style={{ display: delegadoSwitchState ? 'none' : 'block' }}>
+              <option disabled selected value="">Selecciona una opción</option>
+            </select>
+          </div>
+
+        </div>
+      
+      </div>
+
+      <div className={Styles.rolDelegado} style={{ display: delegadoSwitchState ? 'none' : 'block' }}> {/* Subdelegado */}
+        <div className={Styles.columna}> 
+
+          <label className={Styles.delegadoForm}>
+            <p>Convertir en Subdelegado</p>
+            <input className={Styles.delegadoCheck} type="checkbox" onChange={toggleSubdelegadoSwitch} />
+          </label>
+
+        </div>
+
+        <div className={Styles.columnaDelegados}>
+
+          <div>
+            <select style={{ display: subdelegadoSwitchState ? 'none' : 'block' }}>
+              <option disabled selected value="">Selecciona una opción</option>
+            </select>
+          </div>
+
+        </div>
+        
+      </div>
+
+      <input type="submit" value="Guardar Empleado" className={Styles.sendForm}/>
+    
     </form>
   )
 }

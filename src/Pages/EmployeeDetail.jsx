@@ -1,5 +1,6 @@
 import { Flex } from "@chakra-ui/react";
 import { useLocation, useNavigate } from "react-router-dom"
+import back from '../assets/back.svg'
 
 import QRCode from "react-qr-code";
 
@@ -21,6 +22,11 @@ export const EmployeeDetail = () => {
             width: '1300px'
         }}
     >
+        <div>
+            <img src={back} alt="back"/>
+            <p>Registrar Sindicalizado</p>
+        </div>
+
         <div>
             <QRCode value={id} />
         </div>

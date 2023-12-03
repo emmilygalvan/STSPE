@@ -82,6 +82,7 @@ export const TableEmploye = ( { data, setData} ) => {
                             <th></th>
                             <th>Nombre</th>
                             <th>Dependencia</th>
+                            <th>Puesto</th>
                             <th>Estatus</th>
 
                         </thead>
@@ -111,6 +112,10 @@ export const TableEmploye = ( { data, setData} ) => {
 
                                     <td className={Styles.dependencia}>
                                         {emp.dependencia}
+                                    </td>
+
+                                    <td>
+                                        {emp.puesto}
                                     </td>
                                     
                                     <td className={Styles.estatus}>
