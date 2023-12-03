@@ -32,21 +32,25 @@ export const TableEmploye = () => {
         setPage(lastPage)
     }
 
+    const goFirstPage = () => {
+        setPage(1)
+    }
+    
     const getStatusColorClass = (estatus) => {
         switch (estatus) {
           case 'activo':
-            console.log('Activo');
-            return Styles.activo;
+            console.log('activo');
+            return '#0AA932';
           case 'licencia':
             console.log('Licencia');
-            return Styles.licencia;
+            return '#FFBD00';
           case 'baja':
           case 'expulsado':
             console.log('Inactivo');
-            return Styles.inactivo;
+            return '#EE2D2E';
           case 'finado':
             console.log('Finado');
-            return Styles.finado;
+            return 'black';
         }
       };
 
@@ -74,8 +78,8 @@ export const TableEmploye = () => {
 
                         <thead>
 
-                            <th></th>
                             <th>ID</th>
+                            <th></th>
                             <th>Nombre</th>
                             <th>Dependencia</th>
                             <th>Estatus</th>
@@ -92,32 +96,33 @@ export const TableEmploye = () => {
                                         });
                                     }}
                                 >
-                                    <td  className={Styles.photo}> 
-                                        <img className={Styles.photoConteiner}/> 
-                                        {emp.fotoempleado}
-                                    </td>
                                     <td className={Styles.id}>
-                                        {emp.id} 
+                                        {i} 
                                     </td>
+                                    <td  className={Styles.photo}> 
+                                        <div className={Styles.photoConteiner}> 
+                                        {emp.fotoempleado}
+                                        </div>
+                                    </td>
+                                    
                                     <td  className={Styles.name}>
-                                        {emp.nombre}
-                                        {emp.apellidop} 
-                                        {emp.apellidom}
+                                        <div> {emp.nombre} {emp.apellidop} {emp.apellidom} </div>
                                     </td>
+
                                     <td className={Styles.dependencia}>
                                         {emp.dependencia}
                                     </td>
                                     
                                     <td className={Styles.estatus}>
                                         <span 
-                                        style={{
-                                            display: 'inline-block',
-                                            width: '10px',
-                                            height: '10px',
-                                            borderRadius: '50%',
-                                            marginRight: '5px',
-                                            backgroundColor: getStatusColorClass(emp.estatus),
-                                          }}
+                                            style={{
+                                                display: 'inline-block',
+                                                width: '16px',
+                                                height: '16px',
+                                                borderRadius: '50%',
+                                                marginRight: '8px',
+                                                backgroundColor: getStatusColorClass(emp.estatus),
+                                            }}
                                         />
                                         {emp.estatus}
                                     </td>                             
@@ -139,7 +144,7 @@ export const TableEmploye = () => {
                 </table>
 
                 <div className={Styles.pagination}>
-                    <button onClick={goLastPage} className={Styles.firsend} >  <img src={first} alt="first"/> </button>
+                    <button onClick={goFirstPage} className={Styles.firsend} >  <img src={first} alt="first"/> </button>
                     <button onClick={prevPage}  className={Styles.pag} > <img src={back} alt="back"/> </button>
                     <button onClick={nextPage}  className={Styles.pag} > <img src={next} alt="next"/> </button>
                     <button onClick={goLastPage} className={Styles.pag} >  <img src={last} alt="last"/> </button>

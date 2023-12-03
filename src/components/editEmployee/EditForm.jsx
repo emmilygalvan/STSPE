@@ -71,7 +71,7 @@ export const EditForm = () => {
     fechaNacimiento: fechanacimiento,
     lugarNacimiento: lugarnacimiento,
     genero: genero,
-    nacionalidad: formatedNacionalidad(),
+    nacionalidad: nacionalidad,
     curp: curp,
     rfc: rfc,
     nss: nss,

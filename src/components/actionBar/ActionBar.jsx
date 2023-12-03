@@ -8,7 +8,7 @@ export const ActionBar = () => {
     <div className={Styles.buttons}>
       <button className={Styles.filter}> <img src={add} alt="add" />Filtrar</button>
       <div>
-        <button className={Styles.new}><Link to={'/registro'}>Nuevo</Link> </button>
+        <Link to={'/registro'}> <button className={Styles.new}>Nuevo</button></Link> 
         <input placeholder='Buscar' className={Styles.search} />
       </div>
     </div>

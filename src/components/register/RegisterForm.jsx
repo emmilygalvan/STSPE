@@ -82,6 +82,10 @@ export const RegisterForm = () => {
     }
     const resp = await axios.post('http://localhost:3000/api/employee', formState);
     console.log(resp.data);
+    const { employee } = resp.data
+    navigate('/empleado',{ 
+      state:employee
+    })  
   }
 
   const plantelesPorDependencia = {
@@ -456,7 +460,7 @@ export const RegisterForm = () => {
       
       <div className={Styles.dependiente}>
         <h1 className={Styles.title}>Dependientes</h1>
-        <button className={Styles.botonAgregar}>Agregar Dependiente<img className={Styles.iconoAgregar} src={agregar} alt="agregar" /></button>
+        <button type="button" className={Styles.botonAgregar}>Agregar Dependiente<img className={Styles.iconoAgregar} src={agregar} alt="agregar"  /></button>
       </div>
 
       <div className={Styles.dependienteInfo}> 
@@ -675,7 +679,6 @@ export const RegisterForm = () => {
           <label>
             Estatus<br />
             <select name="estatus" value={selectedOption} onChange={handleEstatusChange}>
-              <option disabled selected value="">Selecciona una opción</option>
               <option value="activo">Activo</option>
               <option value="inactivo">Inactivo</option>
               <option value="finado">Finado</option>
@@ -700,7 +703,7 @@ export const RegisterForm = () => {
         </label>
       )}
       
-      <input type="submit" value="Guardar Empleado" className={Styles.sendForm} />
+      <input type="submit" value="Guardar Empleado" className={Styles.sendForm}/>
 
     </form>
   )
