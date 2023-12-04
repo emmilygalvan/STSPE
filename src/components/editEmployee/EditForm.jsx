@@ -140,6 +140,9 @@ export const EditForm = () => {
         );
         console.log(resp.data);
         const { employee } = resp.data;
+
+        console.log(employee);
+
         navigate('/empleado', {
             state: employee,
         });
