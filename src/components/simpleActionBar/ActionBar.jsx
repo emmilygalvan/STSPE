@@ -1,74 +1,51 @@
-import { Flex } from '@chakra-ui/react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import back from '../assets/back.svg';
+import Styles from '../actionBar/ActionBar.module.css';
+import React, { useState } from 'react';
+import add from '../../assets/mass.svg';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 
-import QRCode from 'react-qr-code';
+export const ActionBar = ( {title, setData} ) => {
+    const [search, setSearch] = useState('');
 
-export const EmployeeDetail = () => {
-    const { state } = useLocation();
+    const searchChange = (e) => {
+        setSearch(e.target.value);
+    };
 
-    const navigate = useNavigate();
+    const handleSearchSubmit = async (e) => {
+        e.preventDefault();
+        const resp = await axios.get(
+            `http://localhost:3000/api/employee?s=${search}`
+        );
 
-    const { id, nombre, apellidop, apellidom, fotoempleado } = state;
+        // send resp.data to TableEmploye.jsx
+        const { employees } = resp.data;
 
+        setData(employees);
+    };
 
-  return (
-    <div className={Styles.container}>
-        <div className={Styles.screenName}>
-            <img src={back} alt="back" className={Styles.back} onClick={() => {
-                navigate('/empleados')
-                }}
-            />
-            <p className={Styles.screenTitle}>  {nombre} </p>
-        </div>
-
-        <div className={Styles.container}>
-            <QRCode value={id} />
-        </div>
-        <h2>
-            {
-                
-            }
-        </h2>
-        <h2>
-            {
-                apellidop
-            }
-        </h2>
-
-            <div>
-                <img src={back} alt="back" />
-                <p>Registrar Sindicalizado</p>
-            </div>
-
-            <div>
-                <QRCode value={id} />
-            </div>
-            <h2>{nombre}</h2>
-            <h2>{apellidop}</h2>
-            <h2>{apellidom}</h2>
-            <img src={
-                `./images/${fotoempleado}`
-            } alt="foto" />
-            <p>
-                {fotoempleado}
-            </p>
-            <button
+    return (
+        <div className={Styles.buttons}>
+            
+            <p className={Styles.screenTitle}>
+				{title}
+			</p>
+            
+            <div
                 style={{
-                    background: '#FF8000',
-                    border: 'none',
-                    height: '32px',
-                    width: '280px',
-                    colo: 'white',
-                }}
-                onClick={() => {
-                    navigate('/editEmpleado', {
-                        state,
-                    });
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
                 }}
             >
-                Editar
-            </button>
+                <form action="" onSubmit={handleSearchSubmit}>
+                    <input
+                        placeholder="Buscar"
+                        value={search}
+                        onChange={searchChange}
+                        className={Styles.search}
+                    />
+                </form>
+            </div>
         </div>
     );
 };

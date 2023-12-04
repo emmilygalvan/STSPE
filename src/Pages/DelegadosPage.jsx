@@ -1,5 +1,5 @@
 import { ActionBar } from '../components/simpleActionBar/ActionBar';
-import { TableDelegado } from '../components/tableDelegado/TableDelegado';
+import { TableDependiente } from '../components/tableDependiente/TableDependiente';
 import { useState } from 'react';
 
 export const DelegadosPage = () => {
@@ -7,7 +7,7 @@ export const DelegadosPage = () => {
     return (
         <>
             <ActionBar setData={setData} />
-            <TableDelegado  data={data} setData={setData}/>
+            <TableDependiente data={data} setData={setData}/>
         </>
     );
 };
