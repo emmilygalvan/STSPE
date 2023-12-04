@@ -3,7 +3,7 @@
     overflow-y: scroll;
     width: 1300px;
     display: flex;
-    padding: 8px 8px 8px 8px;
+    padding: 0px 8px 8px 8px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -65,3 +65,11 @@
         border-radius: 0.5rem;
         border: 1.5px solid #FF8000;
     }
+        
+        .screenTitle{
+            color: #223843;
+            font-size: 1.5rem;
+            font-weight: 600;
+            height: 32px;
+            margin-top: 8px;
+        }

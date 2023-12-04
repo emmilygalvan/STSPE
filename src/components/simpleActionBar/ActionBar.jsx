@@ -1,51 +1,74 @@
-import Styles from './ActionBar.module.css';
-import React, { useState } from 'react';
-import add from '../../assets/mass.svg';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import { Flex } from '@chakra-ui/react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import back from '../assets/back.svg';
 
-export const ActionBar = ( {setData} ) => {
-    const [search, setSearch] = useState('');
+import QRCode from 'react-qr-code';
 
-    const searchChange = (e) => {
-        setSearch(e.target.value);
-    };
+export const EmployeeDetail = () => {
+    const { state } = useLocation();
 
-    const handleSearchSubmit = async (e) => {
-        e.preventDefault();
-        const resp = await axios.get(
-            `http://localhost:3000/api/employee?s=${search}`
-        );
+    const navigate = useNavigate();
 
-        // send resp.data to TableEmploye.jsx
-        const { employees } = resp.data;
+    const { id, nombre, apellidop, apellidom, fotoempleado } = state;
 
-        setData(employees);
-    };
 
-    return (
-        <div className={Styles.buttons}>
-            <button className={Styles.filter}>
-                {' '}
-                <img src={add} alt="add" />
-                Filtrar
-            </button>
-            <div
+  return (
+    <div className={Styles.container}>
+        <div className={Styles.screenName}>
+            <img src={back} alt="back" className={Styles.back} onClick={() => {
+                navigate('/empleados')
+                }}
+            />
+            <p className={Styles.screenTitle}>  {nombre} </p>
+        </div>
+
+        <div className={Styles.container}>
+            <QRCode value={id} />
+        </div>
+        <h2>
+            {
+                
+            }
+        </h2>
+        <h2>
+            {
+                apellidop
+            }
+        </h2>
+
+            <div>
+                <img src={back} alt="back" />
+                <p>Registrar Sindicalizado</p>
+            </div>
+
+            <div>
+                <QRCode value={id} />
+            </div>
+            <h2>{nombre}</h2>
+            <h2>{apellidop}</h2>
+            <h2>{apellidom}</h2>
+            <img src={
+                `./images/${fotoempleado}`
+            } alt="foto" />
+            <p>
+                {fotoempleado}
+            </p>
+            <button
                 style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
+                    background: '#FF8000',
+                    border: 'none',
+                    height: '32px',
+                    width: '280px',
+                    colo: 'white',
+                }}
+                onClick={() => {
+                    navigate('/editEmpleado', {
+                        state,
+                    });
                 }}
             >
-                <form action="" onSubmit={handleSearchSubmit}>
-                    <input
-                        placeholder="Buscar"
-                        value={search}
-                        onChange={searchChange}
-                        className={Styles.search}
-                    />
-                </form>
-            </div>
+                Editar
+            </button>
         </div>
     );
 };
