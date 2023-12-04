@@ -6,7 +6,11 @@
     height: 80%;
     display: flex;
     flex-direction: column;
-    background-color: red;
+}
+.photoContainer{
+    background-color: #999999;
+    width: 150px;
+    height: 200px;
 }
 .screenActions{
     color: #223843;
@@ -15,6 +19,14 @@
     justify-content: space-between;
     width: 100%; 
 }
+    .fotoempleado{
+        width: 160px;
+        height: 200px;
+        margin-top: 0px;
+        padding-top: 0px;
+        background-color: #dcdcdc;
+        place-self: end;
+    }
     .screenName{
         color: #223843;
         display: flex;
@@ -83,9 +95,44 @@
         .QR{
             margin-top: 32px;
             background-color: red;
-            height: 200px;
-            
+            height: 200px; 
         }
+        .infoEmployee{
+            margin-top: 24px;
+            width: auto;
+        }
+        .datosp{ 
 
-    
-    
+            padding: 0px;
+            margin: 24px 0px 24px 0;
+        }
+        .dato{
+            color: #223843;
+            font-size: 1.2rem;
+            height: 32px;
+            margin-top: 8px;
+            width: 100%;
+            display: flex;
+        }
+        .dato > p{
+            margin-right: 8px;
+        }
+        .title{
+            margin-top: .8rem;
+            margin-bottom: .8rem;
+            color: #ff8000;
+            font-size: 24px;
+            font-weight: 400;
+        }
+        .datospcol{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 2rem;
+            width: 100%;
+        }
+        .columna{
+            display: grid;
+            font-size: 1.25rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
