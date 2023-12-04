@@ -9,7 +9,6 @@ import axios from 'axios';
 import { opcionesDependencia } from './opciones';
 import agregar from '../../assets/botonmas.svg';
 import { Link, useNavigate } from 'react-router-dom';
-import { Switch } from '@chakra-ui/react';
 
 export const RegisterForm = () => {
     const [selectedState, setSelectedState] = useState('');
