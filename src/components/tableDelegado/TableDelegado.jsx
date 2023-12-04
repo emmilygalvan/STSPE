@@ -1,4 +1,4 @@
-import Styles from './TableEmploye.module.css';
+import Styles from './TableDelegado.module.css';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -9,7 +9,7 @@ import last from '../../assets/lastpage.svg'
 import first from '../../assets/firstpage.svg'
 import edit from '../../assets/editButton.svg'
 
-export const TableEmploye = ( { data, setData} ) => {
+export const TableDelegado = ( { data, setData} ) => {
     
     const navigate = useNavigate();
 

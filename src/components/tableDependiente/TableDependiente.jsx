@@ -1,4 +1,4 @@
-import Styles from './TableEmploye.module.css';
+import Styles from '../tableDependiente/TableDependiente.module.css';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -9,7 +9,7 @@ import last from '../../assets/lastpage.svg'
 import first from '../../assets/firstpage.svg'
 import edit from '../../assets/editButton.svg'
 
-export const TableEmploye = ( { data, setData} ) => {
+export const TableDependiente = ( { data, setData} ) => {
     
     const navigate = useNavigate();
 
@@ -36,23 +36,6 @@ export const TableEmploye = ( { data, setData} ) => {
         setPage(1)
     }
     
-    const getStatusColorClass = (estatus) => {
-        switch (estatus) {
-          case 'activo':
-            console.log('activo');
-            return '#0AA932';
-          case 'licencia':
-            console.log('Licencia');
-            return '#FFBD00';
-          case 'baja':
-          case 'expulsado':
-            console.log('Inactivo');
-            return '#EE2D2E';
-          case 'finado':
-            console.log('Finado');
-            return 'black';
-        }
-      };
 
     useEffect(() => {
         const fetchEmployees = async () => {
@@ -78,12 +61,10 @@ export const TableEmploye = ( { data, setData} ) => {
 
                         <thead>
 
-                            <th>Indice</th>
-                            <th></th>
-                            <th>Nombre</th>
-                            <th>Dependencia</th>
-                            <th>Puesto</th>
-                            <th>Estatus</th>
+                            <th>Dependiente</th>
+                            <th>Sindicalizado</th>
+                            <th>Edad</th>
+                            <th>Parentesco</th>
 
                         </thead>
 
@@ -97,52 +78,22 @@ export const TableEmploye = ( { data, setData} ) => {
                                         });
                                     }}
                                 >
-                                    <td className={Styles.id}>
-                                        {i} 
-                                    </td>
-                                    <td  className={Styles.photo}> 
-                                        <div className={Styles.photoConteiner}> 
-                                        {emp.fotoempleado}
-                                        </div>
-                                    </td>
                                     
+                                    <td  className={Styles.name}>
+                                        <div> {emp.nombredependiente} {emp.apellidopdependiente} {emp.apellidomdependiente} </div>
+                                    </td>
+
                                     <td  className={Styles.name}>
                                         <div> {emp.nombre} {emp.apellidop} {emp.apellidom} </div>
                                     </td>
 
                                     <td className={Styles.dependencia}>
-                                        {emp.dependencia}
+                                        {emp.edad}
                                     </td>
 
                                     <td>
-                                        {emp.puesto}
-                                    </td>
-                                    
-                                    <td className={Styles.estatus}>
-                                        <span 
-                                            style={{
-                                                display: 'inline-block',
-                                                width: '16px',
-                                                height: '16px',
-                                                borderRadius: '50%',
-                                                marginRight: '8px',
-                                                backgroundColor: getStatusColorClass(emp.estatus),
-                                            }}
-                                        />
-                                        {emp.estatus}
-                                    </td>                             
-
-                                    <td className={Styles.actions}> 
-                                        <button className={Styles.edit} 
-                                            onClick={() => {
-                                                navigate('/editEmpleado', {
-                                                    state
-                                                })
-                                            }}>
-
-                                            <img src={edit} alt="edit"/> 
-                                        </button>
-                                    </td>
+                                        {emp.parentesco}
+                                    </td>   
                                 </tr>
                             ))}
                         </tbody>
