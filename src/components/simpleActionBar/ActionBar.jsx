@@ -1,10 +1,10 @@
-import Styles from './ActionBar.module.css';
+import Styles from '../actionBar/ActionBar.module.css';
 import React, { useState } from 'react';
 import add from '../../assets/mass.svg';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-export const ActionBar = ( {setData} ) => {
+export const ActionBar = ( {title, setData} ) => {
     const [search, setSearch] = useState('');
 
     const searchChange = (e) => {
@@ -25,11 +25,11 @@ export const ActionBar = ( {setData} ) => {
 
     return (
         <div className={Styles.buttons}>
-            <button className={Styles.filter}>
-                {' '}
-                <img src={add} alt="add" />
-                Filtrar
-            </button>
+            
+            <p className={Styles.screenTitle}>
+				{title}
+			</p>
+            
             <div
                 style={{
                     display: 'flex',
