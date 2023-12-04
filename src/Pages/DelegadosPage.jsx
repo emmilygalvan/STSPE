@@ -6,7 +6,7 @@ export const DelegadosPage = () => {
     const [data, setData] = useState([]);
     return (
         <>
-            <ActionBar setData={setData} />
+            <ActionBar setData={setData} title={('Delegados')} />
             <TableDependiente data={data} setData={setData}/>
         </>
     );

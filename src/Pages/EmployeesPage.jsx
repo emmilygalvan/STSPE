@@ -6,10 +6,7 @@ export const EmployeesPage = () => {
     const [data, setData] = useState([]);
     return (
         <>
-            <ActionBar setData={setData} 
-                title={('Sindicalizados')}
-            > 
-            </ActionBar>
+            <ActionBar setData={setData} title={('Sindicalizados')} />
             <TableEmploye  data={data} setData={setData}/>
         </>
     );

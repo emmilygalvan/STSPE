@@ -12,14 +12,17 @@
         align-items: center; 
     }
         .back {
+            margin-top: 5px;
             margin-right: 16px;
-            height: 1.2rem;
+            height: 1rem;
             cursor: pointer;
         }
         .screenTitle{
             color: #223843;
-            font-size: 32px;
+            font-size: 1.5rem;
             font-weight: 600;
+            height: 32px;
+            margin-top: 8px;
         }
         
     .title{

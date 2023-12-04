@@ -1,7 +1,15 @@
 .container{
     margin: 90px 40px 0 120px;
     overflow-y: scroll;
+    overflow-x: hidden;
     width: 1280px;
+}
+.screenActions{
+    color: #223843;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%; 
 }
     .screenName{
         color: #223843;
@@ -9,14 +17,71 @@
         align-items: center; 
     }
         .back {
+            margin-top: 5px;
             margin-right: 16px;
-            height: 1.2rem;
+            height: 1rem;
             cursor: pointer;
         }
         .screenTitle{
             color: #223843;
-            font-size: 32px;
+            font-size: 1.5rem;
             font-weight: 600;
+            height: 32px;
+            margin-top: 8px;
+            width: 100%;
+            display: flex;
         }
+        .screenTitle > p{
+            margin-right: 10px;
+        }
+        .buttonss{
+            width: auto;
+            height: 32px;
+        }
+        .editButton{
+            border: none;
+            width: 5rem;
+            border-radius: 8px;
+            background: #4ec253;
+            height: 32px;
+            color: #FFF;
+            text-align: center;
+            font-family: Urbanist;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            padding: 0 8px 0 8px;
+        }
+
+        .printButton{
+            border: none;
+            width: 5.5rem;
+            border-radius: 8px;
+            background: #FF8000;
+            height: 32px;
+            color: #FFF;
+            text-align: center;
+            font-family: Urbanist;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            padding: 0 8px 0 8px;
+            margin-right: 24px;
+        }
+        .editButton:hover {
+            cursor: pointer;
+            background-color: #3a903e;
+        }
+        .printButton:hover{
+            cursor: pointer;
+            background-color: #9f5306;   
+        }
+        .QR{
+            margin-top: 32px;
+            background-color: red;
+            height: 200px;
+            
+        }
+
     
     

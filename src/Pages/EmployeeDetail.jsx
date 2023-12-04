@@ -14,53 +14,54 @@ export const EmployeeDetail = () => {
 
   return (
     <div className={Styles.container}>
-      <div className={Styles.screenName}>
-        <img
-          src={back}
-          alt="back"
-          className={Styles.back}
-          onClick={() => {
-            navigate("/empleados");
-          }}
-        />
-        <p className={Styles.screenTitle}> {nombre} </p>
-      </div>
+      <div className={Styles.screenActions}>
 
-      <div className={Styles.container}>
-        <QRCode value={id} />
-      </div>
-      <h2>{}</h2>
-      <h2>{apellidop}</h2>
+        <div className={Styles.screenName}>
+          <img
+            src={back}
+            alt="back"
+            className={Styles.back}
+            onClick={() => {
+              navigate("/empleados");
+            }}
+          />
+          <p className={Styles.screenTitle}> <p>{nombre}</p><p>{apellidop}</p><p>{apellidom}</p></p>
+        </div>
 
-      <div>
-        <img src={back} alt="back" />
-        <p>Registrar Sindicalizado</p>
-      </div>
+        <div className={Styles.buttonss}>
+          
+          <button className={Styles.printButton}>
+            Credencial
+          </button>
 
-      <div>
-        <QRCode value={id} />
+          <button className={Styles.editButton}
+            onClick={() => {
+              navigate("/editEmpleado", {
+                state,
+              });
+            }}
+          >
+            Editar
+          </button>
+        </div>
+        
       </div>
-      <h2>{nombre}</h2>
-      <h2>{apellidop}</h2>
-      <h2>{apellidom}</h2>
+      
+
+      <div className={Styles.QR}>
+        <QRCode value={id} 
+        style={{
+          width: '128px',
+          marginTop: '0px',
+          paddingTop: '0px',
+          backgroundColor: 'blue',
+        }}/>
+      </div>
+      
+      
       <img src={`./images/${fotoempleado}`} alt="foto" />
       <p>{fotoempleado}</p>
-      <button
-        style={{
-          background: "#FF8000",
-          border: "none",
-          height: "32px",
-          width: "280px",
-          colo: "white",
-        }}
-        onClick={() => {
-          navigate("/editEmpleado", {
-            state,
-          });
-        }}
-      >
-        Editar
-      </button>
+      
     </div>
   );
 };
