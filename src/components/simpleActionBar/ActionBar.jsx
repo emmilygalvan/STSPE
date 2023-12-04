@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import add from '../../assets/mass.svg';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { NewRegisterButton } from '../newButton/NewRegisterButon';
 
 export const ActionBar = ( {setData} ) => {
     const [search, setSearch] = useState('');
@@ -38,10 +37,6 @@ export const ActionBar = ( {setData} ) => {
                     alignItems: 'center',
                 }}
             >
-                <Link to={'/registro'}>
-                    {' '}
-                    <button className={Styles.new}>Nuevo</button>
-                </Link>
                 <form action="" onSubmit={handleSearchSubmit}>
                     <input
                         placeholder="Buscar"

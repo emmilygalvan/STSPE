@@ -1,0 +1,22 @@
+.container{
+    margin: 90px 40px 0 120px;
+    overflow-y: scroll;
+    width: 1280px;
+}
+    .screenName{
+        color: #223843;
+        display: flex;
+        align-items: center; 
+    }
+        .back {
+            margin-right: 16px;
+            height: 1.2rem;
+            cursor: pointer;
+        }
+        .screenTitle{
+            color: #223843;
+            font-size: 32px;
+            font-weight: 600;
+        }
+    
+    

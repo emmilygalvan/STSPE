@@ -7,7 +7,9 @@ export const EmployeesPage = () => {
     const [data, setData] = useState([]);
     return (
         <>
-            <ActionBar setData={setData} />
+            <ActionBar setData={setData} > 
+            <NewRegisterButton />
+            </ActionBar>
             <TableEmploye  data={data} setData={setData}/>
         </>
     );
