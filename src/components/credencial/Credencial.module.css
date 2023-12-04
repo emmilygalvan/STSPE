@@ -1,0 +1,21 @@
+.conteiner{
+    background-color: #d0d0d0;
+    width: 800px;
+    height: 800px;
+}
+.crendencial{
+    margin-top: 200px;
+    background-color: white;
+    width: 325px;
+    height: 204px;
+}
+.header{
+    background-color: #ff800070;
+    width: 325px;
+    height: 56px;
+}
+.logo{
+    margin: 8px 24px 0 8px;
+    height: 40px;
+    
+}
