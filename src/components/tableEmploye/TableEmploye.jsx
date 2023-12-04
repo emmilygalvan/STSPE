@@ -102,7 +102,7 @@ export const TableEmploye = ( { data, setData} ) => {
                                     </td>
                                     <td  className={Styles.photo}> 
                                         <div className={Styles.photoConteiner}> 
-                                        {emp.fotoempleado}
+                                            <img src={emp.foto} alt="foto" />
                                         </div>
                                     </td>
                                     

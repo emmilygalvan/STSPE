@@ -85,8 +85,11 @@ export const RegisterForm = () => {
             return;
         }
         const resp = await axios.post(
-            'http://localhost:3000/api/employee',
-            formState
+            'http://localhost:3000/api/employee', formState, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            }
         );
         console.log(resp.data);
         const { employee } = resp.data;
@@ -502,7 +505,7 @@ export const RegisterForm = () => {
                     onChange={(e) => {
                         setFormstate({
                             ...formState,
-                            fotoEmpleado: e.target.value,
+                            fotoEmpleado: e.target.files[0],
                         });
                     }}
                 />
