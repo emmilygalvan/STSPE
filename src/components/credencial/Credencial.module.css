@@ -1,3 +1,6 @@
+*{
+    font-family: 'Times New Roman', Times, serif;
+}
 .conteiner{
     background-color: #d0d0d0;
     width: 800px;
@@ -13,9 +16,45 @@
     background-color: #ff800070;
     width: 325px;
     height: 56px;
+    display: flex;
 }
 .logo{
     margin: 8px 24px 0 8px;
-    height: 40px;
-    
+    height: 40px;   
 }
+.stspe{
+    padding-top: 8px;
+    width: 80%;
+    color: #223843;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+}
+    .stspeName{
+        font-size: 12px;
+    }
+    .comite{
+        margin-top: 2px;
+        font-size: 10px;
+    }
+    .logoFondo{
+        margin-top: 16px;
+        align-items: center;
+        width: 114px;
+        
+    }
+    .body{
+        background-color: yellowgreen;
+    }
+    .nameandLogo{
+        padding: 16px 8px 16px 8px;
+        background-color: red;
+        width: 70%;
+    }
+    .name{
+        display: flex;
+        background-color: blue;
+        flex-direction: row;
+    }.name > p{
+        margin-right: 5px;
+        font-size: 16px;
+    }
