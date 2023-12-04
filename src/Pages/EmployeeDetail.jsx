@@ -11,15 +11,31 @@ export const EmployeeDetail = () => {
 
     const { id, nombre, apellidop, apellidom, fotoempleado } = state;
 
-    return (
-        <div
-            style={{
-                margin: '90px 40px 40px 120px',
-                display: 'flex',
-                height: '100vh',
-                width: '1300px',
-            }}
-        >
+
+  return (
+    <div className={Styles.container}>
+        <div className={Styles.screenName}>
+            <img src={back} alt="back" className={Styles.back} onClick={() => {
+                navigate('/empleados')
+                }}
+            />
+            <p className={Styles.screenTitle}>  {nombre} </p>
+        </div>
+
+        <div className={Styles.container}>
+            <QRCode value={id} />
+        </div>
+        <h2>
+            {
+                
+            }
+        </h2>
+        <h2>
+            {
+                apellidop
+            }
+        </h2>
+
             <div>
                 <img src={back} alt="back" />
                 <p>Registrar Sindicalizado</p>
@@ -56,3 +72,5 @@ export const EmployeeDetail = () => {
         </div>
     );
 };
+
+

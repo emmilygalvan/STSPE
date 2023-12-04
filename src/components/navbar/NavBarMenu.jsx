@@ -41,9 +41,9 @@ export const NavBarMenu = () => {
             }} />
 
             <div className={Styles.buttons}> 
-            <Link to={'/empleados'}> <button className={Styles.buttonsMenu}> <img src={empleados} alt="empleados" /><p className={Styles.textButton}>Sindicalizados</p></button> </Link> 
-                <button className={Styles.buttonsMenu}> <img src={usuario} alt="usuario" /><p className={Styles.textButton}>Usuarios</p></button>
-                <button className={Styles.buttonsMenu}> <img src={delegado} alt="delegado" /><p className={Styles.textButton}>Delegados</p></button>
+                <Link to={'/empleados'}> <button className={Styles.buttonsMenu}> <img src={empleados} alt="empleados" /><p className={Styles.textButton}>Sindicalizados</p></button> </Link> 
+                <Link to={'/dependientes'}> <button className={Styles.buttonsMenu}> <img src={usuario} alt="usuario" /><p className={Styles.textButton}>Dependientes</p></button>  </Link>    
+                <Link to={'/delegados'}> <button className={Styles.buttonsMenu}> <img src={delegado} alt="delegado" /><p className={Styles.textButton}>Delegados</p></button>  </Link>
             </div>
         </div>
     )
