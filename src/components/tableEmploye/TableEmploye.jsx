@@ -9,12 +9,16 @@ import last from '../../assets/lastpage.svg'
 import first from '../../assets/firstpage.svg'
 import edit from '../../assets/editButton.svg'
 
+import { opcionesDependencia } from '../register/opciones.js'
+
 export const TableEmploye = ( { data, setData} ) => {
     
     const navigate = useNavigate();
 
     const [lastPage, setLastPage] = useState(null);
     const [page, setPage] = useState(1);
+
+    console.log(opcionesDependencia[0].label)
 
     const nextPage = () => {
         setPage(page + 1)
@@ -111,7 +115,7 @@ export const TableEmploye = ( { data, setData} ) => {
                                     </td>
 
                                     <td className={Styles.dependencia}>
-                                        {emp.dependencia}
+                                        {opcionesDependencia[emp.dependencia].label}
                                     </td>
 
                                     <td>
