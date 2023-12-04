@@ -861,16 +861,16 @@ export const RegisterForm = () => {
                             <option disabled selected value="">
                                 Selecciona una opción
                             </option>
-                            <option value="descentralizada">
+                            <option value="1">
                                 Descentralizada
                             </option>
-                            <option value="poderEjecutivo">
+                            <option value="2">
                                 Poder Ejecutivo
                             </option>
-                            <option value="poderJudicial">
+                            <option value="3">
                                 Poder Judicial
                             </option>
-                            <option value="poderLegislativo">
+                            <option value="4">
                                 Poder Legislativo
                             </option>
                         </select>

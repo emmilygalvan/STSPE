@@ -3,6 +3,10 @@
     overflow-y: scroll;
     overflow-x: hidden;
     width: 1280px;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    background-color: red;
 }
 .screenActions{
     color: #223843;

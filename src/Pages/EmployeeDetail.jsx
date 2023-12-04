@@ -48,19 +48,22 @@ export const EmployeeDetail = () => {
                 </div>
             </div>
 
-            <div className={Styles.QR}>
+            <div className={Styles.container}>
                 <QRCode
                     value={id}
                     style={{
                         width: '128px',
+                        height: '128px',
                         marginTop: '0px',
                         paddingTop: '0px',
-                        backgroundColor: 'blue',
+                        
                     }}
                 />
+
+                <img src={`./images/${fotoempleado}`} alt="foto" /> 
             </div>
 
-            <img src={`./images/${fotoempleado}`} alt="foto" />
+            
         </div>
     );
 };
